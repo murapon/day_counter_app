@@ -7,7 +7,7 @@ import 'package:intl/intl.dart';
 
 class EventRegisterPage extends StatefulWidget {
   const EventRegisterPage({
-    Key? key,
+    Key key,
   }) : super(key: key);
 
   @override
@@ -21,7 +21,7 @@ class _EventRegisterPageState extends State<EventRegisterPage> {
   DateTime _date = new DateTime.now();
 
   Future<Null> _selectDate(BuildContext context) async {
-    final DateTime? picked = await showDatePicker(
+    final DateTime picked = await showDatePicker(
         context: context,
         initialDate: DateTime.now(),
         firstDate: new DateTime(0),
@@ -43,11 +43,11 @@ class _EventRegisterPageState extends State<EventRegisterPage> {
   String _displayTypeMessage = _displayTypeDayMessage;
 
   // 写真
-  File? _image;
+  File _image = null;
   final imagePicker = ImagePicker();
 
   Future getImageFromCamera() async {
-    final pickedFile = await imagePicker.getImage(source: ImageSource.camera);
+    final pickedFile = await imagePicker.pickImage(source: ImageSource.camera);
     setState(() {
       if (pickedFile != null) {
         _image = File(pickedFile.path);
@@ -56,7 +56,7 @@ class _EventRegisterPageState extends State<EventRegisterPage> {
   }
 
   Future getImageFromGallery() async {
-    final pickedFile = await imagePicker.getImage(source: ImageSource.gallery);
+    final pickedFile = await imagePicker.pickImage(source: ImageSource.gallery);
     setState(() {
       if (pickedFile != null) {
         _image = File(pickedFile.path);
@@ -168,9 +168,9 @@ class _EventRegisterPageState extends State<EventRegisterPage> {
                         activeColor: Colors.blueAccent,
                         value: 1,
                         groupValue: _countType,
-                        onChanged: (int? value) {
+                        onChanged: (int value) {
                           setState(() {
-                            _countType = value!;
+                            _countType = value;
                             _countTypeMessage = _countTypeProgressMessage;
                           });
                         },
@@ -188,9 +188,9 @@ class _EventRegisterPageState extends State<EventRegisterPage> {
                         activeColor: Colors.blueAccent,
                         value: 2,
                         groupValue: _countType,
-                        onChanged: (int? value) {
+                        onChanged: (int value) {
                           setState(() {
-                            _countType = value!;
+                            _countType = value;
                             _countTypeMessage = _countTypeLeftMessage;
                           });
                         },
@@ -240,9 +240,9 @@ class _EventRegisterPageState extends State<EventRegisterPage> {
                         activeColor: Colors.blueAccent,
                         value: 1,
                         groupValue: _displayType,
-                        onChanged: (int? value) {
+                        onChanged: (int value) {
                           setState(() {
-                            _displayType = value!;
+                            _displayType = value;
                             _displayTypeMessage = _displayTypeDayMessage;
                           });
                         },
@@ -260,9 +260,9 @@ class _EventRegisterPageState extends State<EventRegisterPage> {
                         activeColor: Colors.blueAccent,
                         value: 2,
                         groupValue: _displayType,
-                        onChanged: (int? value) {
+                        onChanged: (int value) {
                           setState(() {
-                            _displayType = value!;
+                            _displayType = value;
                             _displayTypeMessage = _displayTypeTimeMessage;
                           });
                         },
@@ -343,7 +343,7 @@ class _EventRegisterPageState extends State<EventRegisterPage> {
                                           children: <Widget>[
                                             Container(
                                                 width: 80,
-                                                child: Image.file(_image!)),
+                                                child: Image.file(_image)),
                                             IconButton(
                                               // アルバムアイコン
                                               icon: Icon(Icons.cancel),

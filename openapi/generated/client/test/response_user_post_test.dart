@@ -1,0 +1,39 @@
+//
+// AUTO-GENERATED FILE, DO NOT MODIFY!
+//
+// @dart=2.0
+
+// ignore_for_file: unused_element, unused_import
+// ignore_for_file: always_put_required_named_parameters_first
+// ignore_for_file: lines_longer_than_80_chars
+
+import 'package:openapi/api.dart';
+import 'package:test/test.dart';
+
+// tests for ResponseUserPost
+void main() {
+  final instance = ResponseUserPost();
+
+  group('test ResponseUserPost', () {
+    // UUID
+    // String uuid
+    test('to test the property `uuid`', () async {
+      // TODO
+    });
+
+    // パスワード
+    // String password
+    test('to test the property `password`', () async {
+      // TODO
+    });
+
+    // JWTキー
+    // String jwtKey
+    test('to test the property `jwtKey`', () async {
+      // TODO
+    });
+
+
+  });
+
+}

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class EventDetailPage extends StatefulWidget {
   const EventDetailPage({
-    Key? key,
+    Key key,
   }) : super(key: key);
 
   @override

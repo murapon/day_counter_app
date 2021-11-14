@@ -1,0 +1,696 @@
+openapi: 3.0.0
+info:
+  title: time_counter_api
+  version: '1.0'
+  description: TimeCounter API
+  contact:
+    name: murapon
+servers:
+  - url: 'http://localhost:31180'
+tags:
+  - name: user
+  - name: events
+paths:
+  /events:
+    get:
+      operationId: get-events
+      tags:
+        - events
+      summary: イベント一覧取得
+      description: イベント一覧取得
+      parameters:
+        - schema:
+            type: string
+            enum:
+              - android
+              - ios
+          in: header
+          name: x-app-type
+          description: アプリタイプ
+          required: true
+        - schema:
+            type: string
+          in: header
+          name: x-app-version
+          description: アプリバージョン
+          required: true
+        - schema:
+            type: integer
+          in: header
+          name: x-os-version
+          description: OSバージョン
+          required: true
+        - schema:
+            type: string
+          in: header
+          name: x-jwt-key
+          required: true
+          description: jwt key
+        - schema:
+            type: integer
+            default: '10'
+          in: query
+          name: limit
+          description: limit
+        - schema:
+            type: integer
+            default: '0'
+          in: query
+          name: offset
+          description: offset
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/response_events_get'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/response_error'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/response_error'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/response_error'
+        '503':
+          description: Service Unavailable
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/response_error'
+    post:
+      operationId: post-events
+      summary: イベント登録
+      description: イベント登録
+      parameters:
+        - schema:
+            type: string
+            enum:
+              - android
+              - ios
+          in: header
+          name: x-app-type
+          description: アプリタイプ
+          required: true
+        - schema:
+            type: integer
+          in: header
+          name: x-app-version
+          description: アプリバージョン
+          required: true
+        - schema:
+            type: string
+          in: header
+          name: x-os-version
+          description: OSバージョン
+          required: true
+        - schema:
+            type: string
+          in: header
+          name: x-jwt-key
+          required: true
+          description: jwt key
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/request_events_post'
+        description: イベント登録APIのリクエストモデル
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/response_error'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/response_error'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/response_error'
+        '503':
+          description: Service Unavailable
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/response_error'
+      tags:
+        - events
+  '/events/{event_id}':
+    parameters:
+      - schema:
+          type: string
+        name: event_id
+        in: path
+        required: true
+    get:
+      operationId: get-events-event_id
+      tags:
+        - events
+      summary: イベント詳細取得
+      description: イベント詳細取得
+      parameters:
+        - schema:
+            type: string
+            enum:
+              - android
+              - ios
+          in: header
+          name: x-app-type
+          description: アプリタイプ
+          required: true
+        - schema:
+            type: string
+          in: header
+          name: x-app-version
+          description: アプリバージョン
+          required: true
+        - schema:
+            type: integer
+          in: header
+          name: x-os-version
+          description: OSバージョン
+          required: true
+        - schema:
+            type: string
+          in: header
+          name: x-jwt-key
+          required: true
+          description: jwt key
+        - schema:
+            type: string
+          in: query
+          name: event_id
+          description: イベントID
+          required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/response_events_detail_get'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/response_error'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/response_error'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/response_error'
+        '503':
+          description: Service Unavailable
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/response_error'
+    put:
+      operationId: put-events-event_id
+      summary: イベント変更
+      description: イベント変更
+      parameters:
+        - schema:
+            type: string
+            enum:
+              - android
+              - ios
+          in: header
+          name: x-app-type
+          description: アプリタイプ
+          required: true
+        - schema:
+            type: string
+          in: header
+          name: x-app-version
+          description: アプリバージョン
+          required: true
+        - schema:
+            type: integer
+          in: header
+          name: x-os-version
+          description: OSバージョン
+          required: true
+        - schema:
+            type: string
+          in: header
+          name: x-jwt-key
+          required: true
+          description: jwt key
+        - schema:
+            type: string
+          in: query
+          name: event_id
+          description: イベントID
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/request_events_put'
+        description: ''
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/response_error'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/response_error'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/response_error'
+        '503':
+          description: Service Unavailable
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/response_error'
+      tags:
+        - events
+    delete:
+      operationId: delete-events-event_id
+      summary: イベント削除
+      description: イベント削除
+      parameters:
+        - schema:
+            type: string
+            enum:
+              - android
+              - ios
+          in: header
+          name: x-app-type
+          description: アプリタイプ
+          required: true
+        - schema:
+            type: string
+          in: header
+          name: x-app-version
+          description: アプリバージョン
+          required: true
+        - schema:
+            type: integer
+          in: header
+          name: x-os-version
+          description: OSバージョン
+          required: true
+        - schema:
+            type: string
+          in: header
+          name: x-jwt-key
+          required: true
+          description: jwt key
+        - schema:
+            type: string
+          in: query
+          name: event_id
+          description: イベントID
+          required: true
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/response_error'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/response_error'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/response_error'
+        '503':
+          description: Service Unavailable
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/response_error'
+      tags:
+        - events
+  /user:
+    post:
+      operationId: post-user
+      tags:
+        - user
+      summary: ユーザー登録
+      description: ユーザーを作成し、uuid等を返す
+      parameters:
+        - schema:
+            type: string
+            enum:
+              - android
+              - ios
+          in: header
+          name: x-app-type
+          description: アプリタイプ
+          required: true
+        - schema:
+            type: string
+          in: header
+          name: x-app-version
+          description: アプリバージョン
+          required: true
+        - schema:
+            type: integer
+          in: header
+          name: x-os-version
+          description: OSバージョン
+          required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/response_user_post'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/response_error'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/response_error'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/response_error'
+        '503':
+          description: Service Unavailable
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/response_error'
+  /user/jwt_key:
+    post:
+      operationId: post-user-jwt_key
+      tags:
+        - user
+      summary: JWTキー生成
+      description: JWTキーを生成する
+      parameters:
+        - schema:
+            type: string
+            enum:
+              - android
+              - ios
+          in: header
+          name: x-app-type
+          description: アプリタイプ
+          required: true
+        - schema:
+            type: string
+          in: header
+          name: x-app-version
+          description: アプリバージョン
+          required: true
+        - schema:
+            type: integer
+          in: header
+          name: x-os-version
+          description: OSバージョン
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/request_jwt_key_post'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/response_jwt_key_post'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/response_error'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/response_error'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/response_error'
+        '503':
+          description: Service Unavailable
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/response_error'
+components:
+  schemas:
+    request_events_post:
+      title: request_events_post
+      description: イベント登録APIのリクエストモデル
+      type: object
+      properties:
+        title:
+          type: string
+          description: イベントタイトル
+        event_time:
+          type: string
+          description: 時間
+        count_type:
+          type: string
+          description: 'カウントタイプ（progress:経過、left:残り）'
+          enum:
+            - progress
+            - left
+        display_type:
+          type: string
+          enum:
+            - day
+            - time
+          description: '表示形式（day:日、time:日時）'
+        image:
+          type: string
+          description: base64エンコードした画像データ
+        event_date:
+          type: string
+          description: 日
+      required:
+        - title
+        - count_type
+        - display_type
+        - event_date
+    request_events_put:
+      title: request_events_put
+      description: イベント変更APIのリクエストモデル
+      type: object
+      properties:
+        title:
+          type: string
+          description: イベントタイトル
+        event_time:
+          type: string
+        count_type:
+          type: string
+          description: 'カウントタイプ（progress:経過、left:残り）'
+          enum:
+            - progress
+            - left
+        display_type:
+          type: string
+          enum:
+            - day
+            - time
+          description: '表示形式（day:日、time:日時）'
+        image:
+          type: string
+          description: base64エンコードした画像データ
+      required:
+        - title
+        - event_time
+        - count_type
+        - display_type
+    request_jwt_key_post:
+      title: request_jwt_key_post
+      description: JWTキー生成APIのリクエストモデル
+      type: object
+      properties:
+        uuid:
+          type: string
+          description: UUID
+        password:
+          type: string
+          description: パスワード
+      required:
+        - uuid
+        - password
+    response_error:
+      title: response_error
+      description: エラー時のレスポンスモデル
+      type: object
+      properties:
+        messages:
+          type: array
+          description: エラーメッセージ。codeが0以外の場合はmessageに文字列を格納する。
+          items:
+            type: object
+            properties:
+              code:
+                type: string
+                description: エラーコード
+              message:
+                type: string
+                description: エラーメッセージ
+        new_release_url:
+          type: string
+          description: 強制バージョンアップ時のURL
+    response_events_detail_get:
+      title: response_events_detail_get
+      description: イベント詳細取得APIのレスポンスモデル
+      type: object
+      properties:
+        id:
+          type: string
+          description: イベントID
+        title:
+          type: string
+          description: イベントタイトル
+        event_time:
+          type: string
+          description: イベント時間
+        count_type:
+          type: string
+          description: 'カウントタイプ（progress:経過、left:残り）'
+          enum:
+            - progress
+            - left
+        image_name:
+          type: string
+          description: 画像ファイル名
+      required:
+        - id
+        - title
+        - event_time
+        - count_type
+    response_events_get:
+      title: reponse_events_get
+      description: イベント一覧取得APIのレスポンスモデル
+      type: object
+      properties:
+        list:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                description: イベントID
+              count_type:
+                type: string
+                description: 'カウントタイプ（progress:経過、left:残り）'
+                enum:
+                  - progress
+                  - left
+              title:
+                type: string
+                description: タイトル
+              event_time:
+                type: string
+                description: イベント時間
+            required:
+              - id
+              - count_type
+              - title
+              - event_time
+        total_count:
+          type: integer
+          description: 総件数
+        next_offset:
+          type: integer
+          description: 次のoffset
+      required:
+        - list
+        - total_count
+    response_jwt_key_post:
+      title: response_jwt_key_post
+      description: JWTキー生成APIのレスポンスモデル
+      type: object
+      properties:
+        jwt_key:
+          type: string
+          description: JWTキー
+      required:
+        - jwt_key
+    response_user_post:
+      title: response_user_post
+      description: ユーザー作成APIのレスポンスモデル
+      type: object
+      properties:
+        uuid:
+          type: string
+          description: UUID
+        password:
+          type: string
+          description: パスワード
+        jwt_key:
+          type: string
+          description: JWTキー
+      required:
+        - uuid
+        - password
+        - jwt_key
