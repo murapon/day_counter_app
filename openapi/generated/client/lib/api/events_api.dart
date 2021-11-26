@@ -31,15 +31,18 @@ class EventsApi {
   /// * [String] xAppVersion (required):
   ///   アプリバージョン
   ///
-  /// * [int] xOsVersion (required):
+  /// * [String] xOsVersion (required):
   ///   OSバージョン
+  ///
+  /// * [String] xUuid (required):
+  ///   uuid
   ///
   /// * [String] xJwtKey (required):
   ///   jwt key
   ///
   /// * [String] eventId2 (required):
   ///   イベントID
-  Future<Response> deleteEventsEventIdWithHttpInfo(String eventId, String xAppType, String xAppVersion, int xOsVersion, String xJwtKey, String eventId2) async {
+  Future<Response> deleteEventsEventIdWithHttpInfo(String eventId, String xAppType, String xAppVersion, String xOsVersion, String xUuid, String xJwtKey, String eventId2) async {
     // Verify required params are set.
     if (eventId == null) {
      throw ApiException(HttpStatus.badRequest, 'Missing required param: eventId');
@@ -52,6 +55,9 @@ class EventsApi {
     }
     if (xOsVersion == null) {
      throw ApiException(HttpStatus.badRequest, 'Missing required param: xOsVersion');
+    }
+    if (xUuid == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: xUuid');
     }
     if (xJwtKey == null) {
      throw ApiException(HttpStatus.badRequest, 'Missing required param: xJwtKey');
@@ -74,6 +80,7 @@ class EventsApi {
     headerParams[r'x-app-type'] = parameterToString(xAppType);
     headerParams[r'x-app-version'] = parameterToString(xAppVersion);
     headerParams[r'x-os-version'] = parameterToString(xOsVersion);
+    headerParams[r'x-uuid'] = parameterToString(xUuid);
     headerParams[r'x-jwt-key'] = parameterToString(xJwtKey);
 
     final contentTypes = <String>[];
@@ -107,16 +114,19 @@ class EventsApi {
   /// * [String] xAppVersion (required):
   ///   アプリバージョン
   ///
-  /// * [int] xOsVersion (required):
+  /// * [String] xOsVersion (required):
   ///   OSバージョン
+  ///
+  /// * [String] xUuid (required):
+  ///   uuid
   ///
   /// * [String] xJwtKey (required):
   ///   jwt key
   ///
   /// * [String] eventId2 (required):
   ///   イベントID
-  Future<void> deleteEventsEventId(String eventId, String xAppType, String xAppVersion, int xOsVersion, String xJwtKey, String eventId2) async {
-    final response = await deleteEventsEventIdWithHttpInfo(eventId, xAppType, xAppVersion, xOsVersion, xJwtKey, eventId2);
+  Future<void> deleteEventsEventId(String eventId, String xAppType, String xAppVersion, String xOsVersion, String xUuid, String xJwtKey, String eventId2) async {
+    final response = await deleteEventsEventIdWithHttpInfo(eventId, xAppType, xAppVersion, xOsVersion, xUuid, xJwtKey, eventId2);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -136,8 +146,11 @@ class EventsApi {
   /// * [String] xAppVersion (required):
   ///   アプリバージョン
   ///
-  /// * [int] xOsVersion (required):
+  /// * [String] xOsVersion (required):
   ///   OSバージョン
+  ///
+  /// * [String] xUuid (required):
+  ///   uuid
   ///
   /// * [String] xJwtKey (required):
   ///   jwt key
@@ -147,7 +160,7 @@ class EventsApi {
   ///
   /// * [int] offset:
   ///   offset
-  Future<Response> getEventsWithHttpInfo(String xAppType, String xAppVersion, int xOsVersion, String xJwtKey, { int limit, int offset }) async {
+  Future<Response> getEventsWithHttpInfo(String xAppType, String xAppVersion, String xOsVersion, String xUuid, String xJwtKey, { int limit, int offset }) async {
     // Verify required params are set.
     if (xAppType == null) {
      throw ApiException(HttpStatus.badRequest, 'Missing required param: xAppType');
@@ -157,6 +170,9 @@ class EventsApi {
     }
     if (xOsVersion == null) {
      throw ApiException(HttpStatus.badRequest, 'Missing required param: xOsVersion');
+    }
+    if (xUuid == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: xUuid');
     }
     if (xJwtKey == null) {
      throw ApiException(HttpStatus.badRequest, 'Missing required param: xJwtKey');
@@ -180,6 +196,7 @@ class EventsApi {
     headerParams[r'x-app-type'] = parameterToString(xAppType);
     headerParams[r'x-app-version'] = parameterToString(xAppVersion);
     headerParams[r'x-os-version'] = parameterToString(xOsVersion);
+    headerParams[r'x-uuid'] = parameterToString(xUuid);
     headerParams[r'x-jwt-key'] = parameterToString(xJwtKey);
 
     final contentTypes = <String>[];
@@ -211,8 +228,11 @@ class EventsApi {
   /// * [String] xAppVersion (required):
   ///   アプリバージョン
   ///
-  /// * [int] xOsVersion (required):
+  /// * [String] xOsVersion (required):
   ///   OSバージョン
+  ///
+  /// * [String] xUuid (required):
+  ///   uuid
   ///
   /// * [String] xJwtKey (required):
   ///   jwt key
@@ -222,8 +242,8 @@ class EventsApi {
   ///
   /// * [int] offset:
   ///   offset
-  Future<ResponseEventsGet> getEvents(String xAppType, String xAppVersion, int xOsVersion, String xJwtKey, { int limit, int offset }) async {
-    final response = await getEventsWithHttpInfo(xAppType, xAppVersion, xOsVersion, xJwtKey,  limit: limit, offset: offset );
+  Future<ResponseEventsGet> getEvents(String xAppType, String xAppVersion, String xOsVersion, String xUuid, String xJwtKey, { int limit, int offset }) async {
+    final response = await getEventsWithHttpInfo(xAppType, xAppVersion, xOsVersion, xUuid, xJwtKey,  limit: limit, offset: offset );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -252,15 +272,18 @@ class EventsApi {
   /// * [String] xAppVersion (required):
   ///   アプリバージョン
   ///
-  /// * [int] xOsVersion (required):
+  /// * [String] xOsVersion (required):
   ///   OSバージョン
+  ///
+  /// * [String] xUuid (required):
+  ///   uuid
   ///
   /// * [String] xJwtKey (required):
   ///   jwt key
   ///
   /// * [String] eventId2 (required):
   ///   イベントID
-  Future<Response> getEventsEventIdWithHttpInfo(String eventId, String xAppType, String xAppVersion, int xOsVersion, String xJwtKey, String eventId2) async {
+  Future<Response> getEventsEventIdWithHttpInfo(String eventId, String xAppType, String xAppVersion, String xOsVersion, String xUuid, String xJwtKey, String eventId2) async {
     // Verify required params are set.
     if (eventId == null) {
      throw ApiException(HttpStatus.badRequest, 'Missing required param: eventId');
@@ -273,6 +296,9 @@ class EventsApi {
     }
     if (xOsVersion == null) {
      throw ApiException(HttpStatus.badRequest, 'Missing required param: xOsVersion');
+    }
+    if (xUuid == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: xUuid');
     }
     if (xJwtKey == null) {
      throw ApiException(HttpStatus.badRequest, 'Missing required param: xJwtKey');
@@ -295,6 +321,7 @@ class EventsApi {
     headerParams[r'x-app-type'] = parameterToString(xAppType);
     headerParams[r'x-app-version'] = parameterToString(xAppVersion);
     headerParams[r'x-os-version'] = parameterToString(xOsVersion);
+    headerParams[r'x-uuid'] = parameterToString(xUuid);
     headerParams[r'x-jwt-key'] = parameterToString(xJwtKey);
 
     final contentTypes = <String>[];
@@ -328,16 +355,19 @@ class EventsApi {
   /// * [String] xAppVersion (required):
   ///   アプリバージョン
   ///
-  /// * [int] xOsVersion (required):
+  /// * [String] xOsVersion (required):
   ///   OSバージョン
+  ///
+  /// * [String] xUuid (required):
+  ///   uuid
   ///
   /// * [String] xJwtKey (required):
   ///   jwt key
   ///
   /// * [String] eventId2 (required):
   ///   イベントID
-  Future<ResponseEventsDetailGet> getEventsEventId(String eventId, String xAppType, String xAppVersion, int xOsVersion, String xJwtKey, String eventId2) async {
-    final response = await getEventsEventIdWithHttpInfo(eventId, xAppType, xAppVersion, xOsVersion, xJwtKey, eventId2);
+  Future<ResponseEventsDetailGet> getEventsEventId(String eventId, String xAppType, String xAppVersion, String xOsVersion, String xUuid, String xJwtKey, String eventId2) async {
+    final response = await getEventsEventIdWithHttpInfo(eventId, xAppType, xAppVersion, xOsVersion, xUuid, xJwtKey, eventId2);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -361,18 +391,21 @@ class EventsApi {
   /// * [String] xAppType (required):
   ///   アプリタイプ
   ///
-  /// * [int] xAppVersion (required):
+  /// * [String] xAppVersion (required):
   ///   アプリバージョン
   ///
   /// * [String] xOsVersion (required):
   ///   OSバージョン
+  ///
+  /// * [String] xUuid (required):
+  ///   uuid
   ///
   /// * [String] xJwtKey (required):
   ///   jwt key
   ///
   /// * [RequestEventsPost] requestEventsPost:
   ///   イベント登録APIのリクエストモデル
-  Future<Response> postEventsWithHttpInfo(String xAppType, int xAppVersion, String xOsVersion, String xJwtKey, { RequestEventsPost requestEventsPost }) async {
+  Future<Response> postEventsWithHttpInfo(String xAppType, String xAppVersion, String xOsVersion, String xUuid, String xJwtKey, { RequestEventsPost requestEventsPost }) async {
     // Verify required params are set.
     if (xAppType == null) {
      throw ApiException(HttpStatus.badRequest, 'Missing required param: xAppType');
@@ -382,6 +415,9 @@ class EventsApi {
     }
     if (xOsVersion == null) {
      throw ApiException(HttpStatus.badRequest, 'Missing required param: xOsVersion');
+    }
+    if (xUuid == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: xUuid');
     }
     if (xJwtKey == null) {
      throw ApiException(HttpStatus.badRequest, 'Missing required param: xJwtKey');
@@ -398,6 +434,7 @@ class EventsApi {
     headerParams[r'x-app-type'] = parameterToString(xAppType);
     headerParams[r'x-app-version'] = parameterToString(xAppVersion);
     headerParams[r'x-os-version'] = parameterToString(xOsVersion);
+    headerParams[r'x-uuid'] = parameterToString(xUuid);
     headerParams[r'x-jwt-key'] = parameterToString(xJwtKey);
 
     final contentTypes = <String>['application/json'];
@@ -426,19 +463,22 @@ class EventsApi {
   /// * [String] xAppType (required):
   ///   アプリタイプ
   ///
-  /// * [int] xAppVersion (required):
+  /// * [String] xAppVersion (required):
   ///   アプリバージョン
   ///
   /// * [String] xOsVersion (required):
   ///   OSバージョン
+  ///
+  /// * [String] xUuid (required):
+  ///   uuid
   ///
   /// * [String] xJwtKey (required):
   ///   jwt key
   ///
   /// * [RequestEventsPost] requestEventsPost:
   ///   イベント登録APIのリクエストモデル
-  Future<void> postEvents(String xAppType, int xAppVersion, String xOsVersion, String xJwtKey, { RequestEventsPost requestEventsPost }) async {
-    final response = await postEventsWithHttpInfo(xAppType, xAppVersion, xOsVersion, xJwtKey,  requestEventsPost: requestEventsPost );
+  Future<void> postEvents(String xAppType, String xAppVersion, String xOsVersion, String xUuid, String xJwtKey, { RequestEventsPost requestEventsPost }) async {
+    final response = await postEventsWithHttpInfo(xAppType, xAppVersion, xOsVersion, xUuid, xJwtKey,  requestEventsPost: requestEventsPost );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -460,8 +500,11 @@ class EventsApi {
   /// * [String] xAppVersion (required):
   ///   アプリバージョン
   ///
-  /// * [int] xOsVersion (required):
+  /// * [String] xOsVersion (required):
   ///   OSバージョン
+  ///
+  /// * [String] xUuid (required):
+  ///   uuid
   ///
   /// * [String] xJwtKey (required):
   ///   jwt key
@@ -470,7 +513,7 @@ class EventsApi {
   ///   イベントID
   ///
   /// * [RequestEventsPut] requestEventsPut:
-  Future<Response> putEventsEventIdWithHttpInfo(String eventId, String xAppType, String xAppVersion, int xOsVersion, String xJwtKey, String eventId2, { RequestEventsPut requestEventsPut }) async {
+  Future<Response> putEventsEventIdWithHttpInfo(String eventId, String xAppType, String xAppVersion, String xOsVersion, String xUuid, String xJwtKey, String eventId2, { RequestEventsPut requestEventsPut }) async {
     // Verify required params are set.
     if (eventId == null) {
      throw ApiException(HttpStatus.badRequest, 'Missing required param: eventId');
@@ -483,6 +526,9 @@ class EventsApi {
     }
     if (xOsVersion == null) {
      throw ApiException(HttpStatus.badRequest, 'Missing required param: xOsVersion');
+    }
+    if (xUuid == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: xUuid');
     }
     if (xJwtKey == null) {
      throw ApiException(HttpStatus.badRequest, 'Missing required param: xJwtKey');
@@ -505,6 +551,7 @@ class EventsApi {
     headerParams[r'x-app-type'] = parameterToString(xAppType);
     headerParams[r'x-app-version'] = parameterToString(xAppVersion);
     headerParams[r'x-os-version'] = parameterToString(xOsVersion);
+    headerParams[r'x-uuid'] = parameterToString(xUuid);
     headerParams[r'x-jwt-key'] = parameterToString(xJwtKey);
 
     final contentTypes = <String>['application/json'];
@@ -538,8 +585,11 @@ class EventsApi {
   /// * [String] xAppVersion (required):
   ///   アプリバージョン
   ///
-  /// * [int] xOsVersion (required):
+  /// * [String] xOsVersion (required):
   ///   OSバージョン
+  ///
+  /// * [String] xUuid (required):
+  ///   uuid
   ///
   /// * [String] xJwtKey (required):
   ///   jwt key
@@ -548,8 +598,8 @@ class EventsApi {
   ///   イベントID
   ///
   /// * [RequestEventsPut] requestEventsPut:
-  Future<void> putEventsEventId(String eventId, String xAppType, String xAppVersion, int xOsVersion, String xJwtKey, String eventId2, { RequestEventsPut requestEventsPut }) async {
-    final response = await putEventsEventIdWithHttpInfo(eventId, xAppType, xAppVersion, xOsVersion, xJwtKey, eventId2,  requestEventsPut: requestEventsPut );
+  Future<void> putEventsEventId(String eventId, String xAppType, String xAppVersion, String xOsVersion, String xUuid, String xJwtKey, String eventId2, { RequestEventsPut requestEventsPut }) async {
+    final response = await putEventsEventIdWithHttpInfo(eventId, xAppType, xAppVersion, xOsVersion, xUuid, xJwtKey, eventId2,  requestEventsPut: requestEventsPut );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }

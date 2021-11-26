@@ -14,6 +14,8 @@ class _EventDetailPageState extends State<EventDetailPage> {
 
   @override
   Widget build(BuildContext context) {
+print('EventDetailPage start');
+
     return Scaffold(
       appBar: AppBar(
         title: Text("イベント詳細"),

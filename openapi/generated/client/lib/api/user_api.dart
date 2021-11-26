@@ -29,9 +29,9 @@ class UserApi {
   /// * [String] xAppVersion (required):
   ///   アプリバージョン
   ///
-  /// * [int] xOsVersion (required):
+  /// * [String] xOsVersion (required):
   ///   OSバージョン
-  Future<Response> postUserWithHttpInfo(String xAppType, String xAppVersion, int xOsVersion) async {
+  Future<Response> postUserWithHttpInfo(String xAppType, String xAppVersion, String xOsVersion) async {
     // Verify required params are set.
     if (xAppType == null) {
      throw ApiException(HttpStatus.badRequest, 'Missing required param: xAppType');
@@ -84,9 +84,9 @@ class UserApi {
   /// * [String] xAppVersion (required):
   ///   アプリバージョン
   ///
-  /// * [int] xOsVersion (required):
+  /// * [String] xOsVersion (required):
   ///   OSバージョン
-  Future<ResponseUserPost> postUser(String xAppType, String xAppVersion, int xOsVersion) async {
+  Future<ResponseUserPost> postUser(String xAppType, String xAppVersion, String xOsVersion) async {
     final response = await postUserWithHttpInfo(xAppType, xAppVersion, xOsVersion);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
@@ -114,11 +114,11 @@ class UserApi {
   /// * [String] xAppVersion (required):
   ///   アプリバージョン
   ///
-  /// * [int] xOsVersion (required):
+  /// * [String] xOsVersion (required):
   ///   OSバージョン
   ///
   /// * [RequestJwtKeyPost] requestJwtKeyPost:
-  Future<Response> postUserJwtKeyWithHttpInfo(String xAppType, String xAppVersion, int xOsVersion, { RequestJwtKeyPost requestJwtKeyPost }) async {
+  Future<Response> postUserJwtKeyWithHttpInfo(String xAppType, String xAppVersion, String xOsVersion, { RequestJwtKeyPost requestJwtKeyPost }) async {
     // Verify required params are set.
     if (xAppType == null) {
      throw ApiException(HttpStatus.badRequest, 'Missing required param: xAppType');
@@ -171,11 +171,11 @@ class UserApi {
   /// * [String] xAppVersion (required):
   ///   アプリバージョン
   ///
-  /// * [int] xOsVersion (required):
+  /// * [String] xOsVersion (required):
   ///   OSバージョン
   ///
   /// * [RequestJwtKeyPost] requestJwtKeyPost:
-  Future<ResponseJwtKeyPost> postUserJwtKey(String xAppType, String xAppVersion, int xOsVersion, { RequestJwtKeyPost requestJwtKeyPost }) async {
+  Future<ResponseJwtKeyPost> postUserJwtKey(String xAppType, String xAppVersion, String xOsVersion, { RequestJwtKeyPost requestJwtKeyPost }) async {
     final response = await postUserJwtKeyWithHttpInfo(xAppType, xAppVersion, xOsVersion,  requestJwtKeyPost: requestJwtKeyPost );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));

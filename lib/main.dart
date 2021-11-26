@@ -20,6 +20,7 @@ class MyApp extends StatefulWidget {
   const MyApp({
     Key key,
   }) : super(key: key);
+
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }
@@ -28,11 +29,29 @@ class _MyHomePageState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
+    print("initState");
     //アプリ起動時に一度だけ実行される
     // OS情報取得、アプリID取得
     Future(() async {
       await _initApp();
+//      Navigator.pushNamed(context, '/event_list');
+
+//      print("initState end");
+//      Navigator.push(context, MaterialPageRoute(builder: (context) {
+//      return MaterialApp(routes: {'/': (context) => EventListPage()}
+//          //       );
+//          );
+//      Future(() {
+//        Navigator.push(context, MaterialPageRoute(builder: (context) {
+//          return EventListPage();
+//        }));
     });
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+
   }
 
   @override
@@ -43,11 +62,9 @@ class _MyHomePageState extends State<MyApp> {
         primaryColor: Colors.lightBlue[800],
         accentColor: Colors.cyan[600],
       ),
-//      home: IndexPage(),
-//      home: EventListPage()
       routes: {
-        '/': (context) => EventListPage(),
-//s        '/event_list': (context) => EventListPage(),
+        '/': (context) => EventRegisterPage(),
+        '/event_list': (context) => EventListPage(),
         '/event_detail': (context) => EventDetailPage(),
         '/event_register': (context) => EventRegisterPage(),
 //        '/event_update': (context) => EventUpdatePage(),
@@ -57,18 +74,22 @@ class _MyHomePageState extends State<MyApp> {
   }
 
   _initApp() async {
-print("_initApp start");
+//    print("_initApp start");
     // OS情報取得
     var deviceInfoService = new DeviceInfoService();
     await deviceInfoService.setDeviceInfo();
     // 初期設定：アプリID取得
+/*
     var spDevice = new SpAccount();
     await spDevice.getAccount();
     AccountEntity accountEntity = new AccountEntity();
-    if (accountEntity.getUuid() == null) {
-      var userApiService = new UserApiService();
-      await userApiService.getUser();
-    }
-print("_initApp end");
+    print("No.1 start uuid");
+    print(accountEntity.getUuid());
+    //   if (accountEntity.getUuid() == null) {
+    var userApiService = new UserApiService();
+    await userApiService.getUser();
+//    }
+*/
+//    print("_initApp end");
   }
 }

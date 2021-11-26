@@ -27,7 +27,7 @@ import 'package:openapi/api.dart';
 final api_instance = UserApi();
 final xAppType = xAppType_example; // String | アプリタイプ
 final xAppVersion = xAppVersion_example; // String | アプリバージョン
-final xOsVersion = 56; // int | OSバージョン
+final xOsVersion = xOsVersion_example; // String | OSバージョン
 
 try { 
     final result = api_instance.postUser(xAppType, xAppVersion, xOsVersion);
@@ -43,7 +43,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **xAppType** | **String**| アプリタイプ | 
  **xAppVersion** | **String**| アプリバージョン | 
- **xOsVersion** | **int**| OSバージョン | 
+ **xOsVersion** | **String**| OSバージョン | 
 
 ### Return type
 
@@ -74,7 +74,7 @@ import 'package:openapi/api.dart';
 final api_instance = UserApi();
 final xAppType = xAppType_example; // String | アプリタイプ
 final xAppVersion = xAppVersion_example; // String | アプリバージョン
-final xOsVersion = 56; // int | OSバージョン
+final xOsVersion = xOsVersion_example; // String | OSバージョン
 final requestJwtKeyPost = RequestJwtKeyPost(); // RequestJwtKeyPost | 
 
 try { 
@@ -91,7 +91,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **xAppType** | **String**| アプリタイプ | 
  **xAppVersion** | **String**| アプリバージョン | 
- **xOsVersion** | **int**| OSバージョン | 
+ **xOsVersion** | **String**| OSバージョン | 
  **requestJwtKeyPost** | [**RequestJwtKeyPost**](RequestJwtKeyPost.md)|  | [optional] 
 
 ### Return type

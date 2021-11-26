@@ -44,12 +44,13 @@ final api_instance = EventsApi();
 final eventId = eventId_example; // String | 
 final xAppType = xAppType_example; // String | アプリタイプ
 final xAppVersion = xAppVersion_example; // String | アプリバージョン
-final xOsVersion = 56; // int | OSバージョン
+final xOsVersion = xOsVersion_example; // String | OSバージョン
+final xUuid = xUuid_example; // String | uuid
 final xJwtKey = xJwtKey_example; // String | jwt key
 final eventId2 = eventId_example; // String | イベントID
 
 try {
-    api_instance.deleteEventsEventId(eventId, xAppType, xAppVersion, xOsVersion, xJwtKey, eventId2);
+    api_instance.deleteEventsEventId(eventId, xAppType, xAppVersion, xOsVersion, xUuid, xJwtKey, eventId2);
 } catch (e) {
     print('Exception when calling EventsApi->deleteEventsEventId: $e\n');
 }

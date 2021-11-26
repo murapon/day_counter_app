@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:openapi/api.dart';
-import 'package:http/http.dart';
-import 'package:time_counter_app/services/EventsService.dart';
+import 'package:time_counter_app/entity/AccountEntity.dart';
+import 'package:time_counter_app/services/api/EventsApiService.dart';
 import 'package:time_counter_app/services/api/UserApiService.dart';
 import 'package:time_counter_app/storage/SpAccount.dart';
 
@@ -15,50 +15,31 @@ class EventListPage extends StatefulWidget {
 }
 
 class _EventListPageState extends State<EventListPage> {
-//  var eventList = ['イベントA', 'イベントB', 'イベントC'];
+  Future<ResponseEventsGet> eventList = null;
 
   @override
   Widget build(BuildContext context) {
+    print('EventListPage START');
+
 /*
-    //    var uuid = null;
-    // 初回起動処理
-    // ローカルにuuidがあるか確認になければ発行する
-    var spAccount = new SpAccount();
-//    Map account = spAccount.getAccount() as Map;
-    Map account;
-    spAccount.getAccount().then((value) {
-      account = value;
-      print('uuid');
-      print(value['uuid']);
-      if (value['uuid'] == null) {
-        // アカウント発行APIを実行し、shared_preferencesに値を保存する
-        var postUserApi = new PostUserApi();
-        postUserApi.getUser().then((value) {
-          ResponseUserPost user = value;
-          spAccount.setAccount(user.uuid, user.password, user.jwtKey);
-          uuid = user.uuid;
-        });
-        // イベント一覧取得
-
-      } else {
-        // イベント一覧
-
-        // jwtkeyエラーなら、ログインし直し
-        // イベント一覧再実行
-
-
-      }
-    });
+    print("getList  test-------------");
+    // 初期設定：アプリID取得
+    var spDevice = new SpAccount();
+    spDevice.getAccount();
+    AccountEntity accountEntity = new AccountEntity();
+    print("event_list_page123 uuid");
+    print(accountEntity.getUuid());
+    if (accountEntity.getUuid() == null) {
+      var userApiService = new UserApiService();
+      userApiService.getUser();
+    }
+    print("test-------------1");
+    var eventsApiService = new EventsApiService();
+    print("test-------------2");
+    // イベント一覧取得
+    eventList = eventsApiService.getEvents(10, 0);
+    print("test-------------3");
 */
-    // アカウントチェック
-
-
-
-
-
-
-
-
 
     return Scaffold(
       appBar: AppBar(
@@ -66,14 +47,12 @@ class _EventListPageState extends State<EventListPage> {
         automaticallyImplyLeading: false,
       ),
       body: FutureBuilder(
-        future: getList(),
-        builder: (BuildContext context, AsyncSnapshot<List<String>> snapshot) {
+        future: _getList(),
+        builder: (BuildContext context, AsyncSnapshot<ResponseEventsGet> snapshot) {
+          print("EventListPage builder START");
           if (!snapshot.hasData) {
+            print("EventListPage builder NO DATA");
             return Text("データを取得中");
-          }
-
-          if (snapshot.data.length == 0) {
-            return Text("データが存在しませんでした。");
           }
           return ListView.builder(
             shrinkWrap: true,
@@ -86,7 +65,7 @@ class _EventListPageState extends State<EventListPage> {
                   ),
                   child: ListTile(
                     leading: const Icon(Icons.flight_land),
-                    title: Text(snapshot.data[index]),
+                    title: Text(snapshot.data.list[index].title),
                     subtitle: Text('2021/10/09 00:00:00'),
                     onTap: () {
                       Navigator.pushNamed(context, '/event_detail');
@@ -97,7 +76,7 @@ class _EventListPageState extends State<EventListPage> {
                     },
                   ));
             },
-            itemCount: snapshot.data.length,
+            itemCount: snapshot.data.totalCount,
           );
         },
       ),
@@ -110,23 +89,21 @@ class _EventListPageState extends State<EventListPage> {
     );
   }
 
-  Future<List<String>> getList() async {
-    var eventsService = new EventsService();
+  Future<ResponseEventsGet> _getList() async  {
+print("EventListPage getList START");
+    // 初期設定：アプリID取得
+    var spDevice = new SpAccount();
+    spDevice.getAccount();
+    AccountEntity accountEntity = new AccountEntity();
+    print(accountEntity.getUuid());
+    if (accountEntity.getUuid() == null) {
+      var userApiService = new UserApiService();
+      await userApiService.getUser();
+    }
+    var eventsApiService = new EventsApiService();
     // イベント一覧取得
-    eventsService.getList(10, 0).then((value) {
-
-
-/*
-          });
-        });
-      } else {
-        // イベント一覧
-        // jwtkeyエラーなら、ログインし直し
-        // イベント一覧再実行
-      }
-*/
-    });
-    List<String> eventList = ['イベントA', 'イベントB', 'イベントC'];
-    return eventList;
+    var a =  await eventsApiService.getEvents(10, 0);
+print("EventListPage getList RETURN");
+    return a;
   }
 }

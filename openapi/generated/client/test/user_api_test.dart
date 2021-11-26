@@ -20,7 +20,7 @@ void main() {
     //
     // ユーザーを作成し、uuid等を返す
     //
-    //Future<ResponseUserPost> postUser(String xAppType, String xAppVersion, int xOsVersion) async
+    //Future<ResponseUserPost> postUser(String xAppType, String xAppVersion, String xOsVersion) async
     test('test postUser', () async {
       // TODO
     });
@@ -29,7 +29,7 @@ void main() {
     //
     // JWTキーを生成する
     //
-    //Future<ResponseJwtKeyPost> postUserJwtKey(String xAppType, String xAppVersion, int xOsVersion, { RequestJwtKeyPost requestJwtKeyPost }) async
+    //Future<ResponseJwtKeyPost> postUserJwtKey(String xAppType, String xAppVersion, String xOsVersion, { RequestJwtKeyPost requestJwtKeyPost }) async
     test('test postUserJwtKey', () async {
       // TODO
     });

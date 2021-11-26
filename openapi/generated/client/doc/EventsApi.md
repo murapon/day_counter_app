@@ -17,7 +17,7 @@ Method | HTTP request | Description
 
 
 # **deleteEventsEventId**
-> deleteEventsEventId(eventId, xAppType, xAppVersion, xOsVersion, xJwtKey, eventId2)
+> deleteEventsEventId(eventId, xAppType, xAppVersion, xOsVersion, xUuid, xJwtKey, eventId2)
 
 イベント削除
 
@@ -31,12 +31,13 @@ final api_instance = EventsApi();
 final eventId = eventId_example; // String | 
 final xAppType = xAppType_example; // String | アプリタイプ
 final xAppVersion = xAppVersion_example; // String | アプリバージョン
-final xOsVersion = 56; // int | OSバージョン
+final xOsVersion = xOsVersion_example; // String | OSバージョン
+final xUuid = xUuid_example; // String | uuid
 final xJwtKey = xJwtKey_example; // String | jwt key
 final eventId2 = eventId_example; // String | イベントID
 
 try { 
-    api_instance.deleteEventsEventId(eventId, xAppType, xAppVersion, xOsVersion, xJwtKey, eventId2);
+    api_instance.deleteEventsEventId(eventId, xAppType, xAppVersion, xOsVersion, xUuid, xJwtKey, eventId2);
 } catch (e) {
     print('Exception when calling EventsApi->deleteEventsEventId: $e\n');
 }
@@ -49,7 +50,8 @@ Name | Type | Description  | Notes
  **eventId** | **String**|  | 
  **xAppType** | **String**| アプリタイプ | 
  **xAppVersion** | **String**| アプリバージョン | 
- **xOsVersion** | **int**| OSバージョン | 
+ **xOsVersion** | **String**| OSバージョン | 
+ **xUuid** | **String**| uuid | 
  **xJwtKey** | **String**| jwt key | 
  **eventId2** | **String**| イベントID | 
 
@@ -69,7 +71,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **getEvents**
-> ResponseEventsGet getEvents(xAppType, xAppVersion, xOsVersion, xJwtKey, limit, offset)
+> ResponseEventsGet getEvents(xAppType, xAppVersion, xOsVersion, xUuid, xJwtKey, limit, offset)
 
 イベント一覧取得
 
@@ -82,13 +84,14 @@ import 'package:openapi/api.dart';
 final api_instance = EventsApi();
 final xAppType = xAppType_example; // String | アプリタイプ
 final xAppVersion = xAppVersion_example; // String | アプリバージョン
-final xOsVersion = 56; // int | OSバージョン
+final xOsVersion = xOsVersion_example; // String | OSバージョン
+final xUuid = xUuid_example; // String | uuid
 final xJwtKey = xJwtKey_example; // String | jwt key
 final limit = 56; // int | limit
 final offset = 56; // int | offset
 
 try { 
-    final result = api_instance.getEvents(xAppType, xAppVersion, xOsVersion, xJwtKey, limit, offset);
+    final result = api_instance.getEvents(xAppType, xAppVersion, xOsVersion, xUuid, xJwtKey, limit, offset);
     print(result);
 } catch (e) {
     print('Exception when calling EventsApi->getEvents: $e\n');
@@ -101,7 +104,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **xAppType** | **String**| アプリタイプ | 
  **xAppVersion** | **String**| アプリバージョン | 
- **xOsVersion** | **int**| OSバージョン | 
+ **xOsVersion** | **String**| OSバージョン | 
+ **xUuid** | **String**| uuid | 
  **xJwtKey** | **String**| jwt key | 
  **limit** | **int**| limit | [optional] 
  **offset** | **int**| offset | [optional] 
@@ -122,7 +126,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **getEventsEventId**
-> ResponseEventsDetailGet getEventsEventId(eventId, xAppType, xAppVersion, xOsVersion, xJwtKey, eventId2)
+> ResponseEventsDetailGet getEventsEventId(eventId, xAppType, xAppVersion, xOsVersion, xUuid, xJwtKey, eventId2)
 
 イベント詳細取得
 
@@ -136,12 +140,13 @@ final api_instance = EventsApi();
 final eventId = eventId_example; // String | 
 final xAppType = xAppType_example; // String | アプリタイプ
 final xAppVersion = xAppVersion_example; // String | アプリバージョン
-final xOsVersion = 56; // int | OSバージョン
+final xOsVersion = xOsVersion_example; // String | OSバージョン
+final xUuid = xUuid_example; // String | uuid
 final xJwtKey = xJwtKey_example; // String | jwt key
 final eventId2 = eventId_example; // String | イベントID
 
 try { 
-    final result = api_instance.getEventsEventId(eventId, xAppType, xAppVersion, xOsVersion, xJwtKey, eventId2);
+    final result = api_instance.getEventsEventId(eventId, xAppType, xAppVersion, xOsVersion, xUuid, xJwtKey, eventId2);
     print(result);
 } catch (e) {
     print('Exception when calling EventsApi->getEventsEventId: $e\n');
@@ -155,7 +160,8 @@ Name | Type | Description  | Notes
  **eventId** | **String**|  | 
  **xAppType** | **String**| アプリタイプ | 
  **xAppVersion** | **String**| アプリバージョン | 
- **xOsVersion** | **int**| OSバージョン | 
+ **xOsVersion** | **String**| OSバージョン | 
+ **xUuid** | **String**| uuid | 
  **xJwtKey** | **String**| jwt key | 
  **eventId2** | **String**| イベントID | 
 
@@ -175,7 +181,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **postEvents**
-> postEvents(xAppType, xAppVersion, xOsVersion, xJwtKey, requestEventsPost)
+> postEvents(xAppType, xAppVersion, xOsVersion, xUuid, xJwtKey, requestEventsPost)
 
 イベント登録
 
@@ -187,13 +193,14 @@ import 'package:openapi/api.dart';
 
 final api_instance = EventsApi();
 final xAppType = xAppType_example; // String | アプリタイプ
-final xAppVersion = 56; // int | アプリバージョン
+final xAppVersion = xAppVersion_example; // String | アプリバージョン
 final xOsVersion = xOsVersion_example; // String | OSバージョン
+final xUuid = xUuid_example; // String | uuid
 final xJwtKey = xJwtKey_example; // String | jwt key
 final requestEventsPost = RequestEventsPost(); // RequestEventsPost | イベント登録APIのリクエストモデル
 
 try { 
-    api_instance.postEvents(xAppType, xAppVersion, xOsVersion, xJwtKey, requestEventsPost);
+    api_instance.postEvents(xAppType, xAppVersion, xOsVersion, xUuid, xJwtKey, requestEventsPost);
 } catch (e) {
     print('Exception when calling EventsApi->postEvents: $e\n');
 }
@@ -204,8 +211,9 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **xAppType** | **String**| アプリタイプ | 
- **xAppVersion** | **int**| アプリバージョン | 
+ **xAppVersion** | **String**| アプリバージョン | 
  **xOsVersion** | **String**| OSバージョン | 
+ **xUuid** | **String**| uuid | 
  **xJwtKey** | **String**| jwt key | 
  **requestEventsPost** | [**RequestEventsPost**](RequestEventsPost.md)| イベント登録APIのリクエストモデル | [optional] 
 
@@ -225,7 +233,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **putEventsEventId**
-> putEventsEventId(eventId, xAppType, xAppVersion, xOsVersion, xJwtKey, eventId2, requestEventsPut)
+> putEventsEventId(eventId, xAppType, xAppVersion, xOsVersion, xUuid, xJwtKey, eventId2, requestEventsPut)
 
 イベント変更
 
@@ -239,13 +247,14 @@ final api_instance = EventsApi();
 final eventId = eventId_example; // String | 
 final xAppType = xAppType_example; // String | アプリタイプ
 final xAppVersion = xAppVersion_example; // String | アプリバージョン
-final xOsVersion = 56; // int | OSバージョン
+final xOsVersion = xOsVersion_example; // String | OSバージョン
+final xUuid = xUuid_example; // String | uuid
 final xJwtKey = xJwtKey_example; // String | jwt key
 final eventId2 = eventId_example; // String | イベントID
 final requestEventsPut = RequestEventsPut(); // RequestEventsPut | 
 
 try { 
-    api_instance.putEventsEventId(eventId, xAppType, xAppVersion, xOsVersion, xJwtKey, eventId2, requestEventsPut);
+    api_instance.putEventsEventId(eventId, xAppType, xAppVersion, xOsVersion, xUuid, xJwtKey, eventId2, requestEventsPut);
 } catch (e) {
     print('Exception when calling EventsApi->putEventsEventId: $e\n');
 }
@@ -258,7 +267,8 @@ Name | Type | Description  | Notes
  **eventId** | **String**|  | 
  **xAppType** | **String**| アプリタイプ | 
  **xAppVersion** | **String**| アプリバージョン | 
- **xOsVersion** | **int**| OSバージョン | 
+ **xOsVersion** | **String**| OSバージョン | 
+ **xUuid** | **String**| uuid | 
  **xJwtKey** | **String**| jwt key | 
  **eventId2** | **String**| イベントID | 
  **requestEventsPut** | [**RequestEventsPut**](RequestEventsPut.md)|  | [optional] 

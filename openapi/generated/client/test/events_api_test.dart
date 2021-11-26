@@ -20,7 +20,7 @@ void main() {
     //
     // イベント削除
     //
-    //Future deleteEventsEventId(String eventId, String xAppType, String xAppVersion, int xOsVersion, String xJwtKey, String eventId2) async
+    //Future deleteEventsEventId(String eventId, String xAppType, String xAppVersion, String xOsVersion, String xUuid, String xJwtKey, String eventId2) async
     test('test deleteEventsEventId', () async {
       // TODO
     });
@@ -29,7 +29,7 @@ void main() {
     //
     // イベント一覧取得
     //
-    //Future<ResponseEventsGet> getEvents(String xAppType, String xAppVersion, int xOsVersion, String xJwtKey, { int limit, int offset }) async
+    //Future<ResponseEventsGet> getEvents(String xAppType, String xAppVersion, String xOsVersion, String xUuid, String xJwtKey, { int limit, int offset }) async
     test('test getEvents', () async {
       // TODO
     });
@@ -38,7 +38,7 @@ void main() {
     //
     // イベント詳細取得
     //
-    //Future<ResponseEventsDetailGet> getEventsEventId(String eventId, String xAppType, String xAppVersion, int xOsVersion, String xJwtKey, String eventId2) async
+    //Future<ResponseEventsDetailGet> getEventsEventId(String eventId, String xAppType, String xAppVersion, String xOsVersion, String xUuid, String xJwtKey, String eventId2) async
     test('test getEventsEventId', () async {
       // TODO
     });
@@ -47,7 +47,7 @@ void main() {
     //
     // イベント登録
     //
-    //Future postEvents(String xAppType, int xAppVersion, String xOsVersion, String xJwtKey, { RequestEventsPost requestEventsPost }) async
+    //Future postEvents(String xAppType, String xAppVersion, String xOsVersion, String xUuid, String xJwtKey, { RequestEventsPost requestEventsPost }) async
     test('test postEvents', () async {
       // TODO
     });
@@ -56,7 +56,7 @@ void main() {
     //
     // イベント変更
     //
-    //Future putEventsEventId(String eventId, String xAppType, String xAppVersion, int xOsVersion, String xJwtKey, String eventId2, { RequestEventsPut requestEventsPut }) async
+    //Future putEventsEventId(String eventId, String xAppType, String xAppVersion, String xOsVersion, String xUuid, String xJwtKey, String eventId2, { RequestEventsPut requestEventsPut }) async
     test('test putEventsEventId', () async {
       // TODO
     });

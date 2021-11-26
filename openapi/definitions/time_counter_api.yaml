@@ -35,11 +35,17 @@ paths:
           description: アプリバージョン
           required: true
         - schema:
-            type: integer
+            type: string
           in: header
           name: x-os-version
           description: OSバージョン
           required: true
+        - schema:
+            type: string
+          in: header
+          name: x-uuid
+          required: true
+          description: uuid
         - schema:
             type: string
           in: header
@@ -104,7 +110,7 @@ paths:
           description: アプリタイプ
           required: true
         - schema:
-            type: integer
+            type: string
           in: header
           name: x-app-version
           description: アプリバージョン
@@ -115,6 +121,12 @@ paths:
           name: x-os-version
           description: OSバージョン
           required: true
+        - schema:
+            type: string
+          in: header
+          name: x-uuid
+          required: true
+          description: uuid
         - schema:
             type: string
           in: header
@@ -186,11 +198,17 @@ paths:
           description: アプリバージョン
           required: true
         - schema:
-            type: integer
+            type: string
           in: header
           name: x-os-version
           description: OSバージョン
           required: true
+        - schema:
+            type: string
+          in: header
+          name: x-uuid
+          required: true
+          description: uuid
         - schema:
             type: string
           in: header
@@ -255,11 +273,17 @@ paths:
           description: アプリバージョン
           required: true
         - schema:
-            type: integer
+            type: string
           in: header
           name: x-os-version
           description: OSバージョン
           required: true
+        - schema:
+            type: string
+          in: header
+          name: x-uuid
+          required: true
+          description: uuid
         - schema:
             type: string
           in: header
@@ -328,11 +352,17 @@ paths:
           description: アプリバージョン
           required: true
         - schema:
-            type: integer
+            type: string
           in: header
           name: x-os-version
           description: OSバージョン
           required: true
+        - schema:
+            type: string
+          in: header
+          name: x-uuid
+          required: true
+          description: uuid
         - schema:
             type: string
           in: header
@@ -398,7 +428,7 @@ paths:
           description: アプリバージョン
           required: true
         - schema:
-            type: integer
+            type: string
           in: header
           name: x-os-version
           description: OSバージョン
@@ -458,7 +488,7 @@ paths:
           description: アプリバージョン
           required: true
         - schema:
-            type: integer
+            type: string
           in: header
           name: x-os-version
           description: OSバージョン

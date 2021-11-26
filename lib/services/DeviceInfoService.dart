@@ -14,7 +14,7 @@ class DeviceInfoService {
     } else if (Platform.isIOS) {
       deviceData = _readIosDeviceInfo(await deviceInfoPlugin.iosInfo);
     }
-    DeviceInfoEntity().setDevice('os_version', deviceData['osVersion']);
+    DeviceInfoEntity().setDevice('os_version', deviceData['osVersion'].toString());
   }
 
   Map<String, dynamic> _readAndroidBuildData(AndroidDeviceInfo build) {

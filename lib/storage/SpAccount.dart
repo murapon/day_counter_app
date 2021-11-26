@@ -26,4 +26,12 @@ class SpAccount {
     await prefs.setString('password', password);
     await prefs.setString('jwtKey', jwtKey);
   }
+
+  /**
+   * jwt keyを保存
+   */
+  void setJwtKey(String jwtKey) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('jwtKey', jwtKey);
+  }
 }
