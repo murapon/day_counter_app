@@ -20,7 +20,7 @@ class ResponseEventsDetailGet {
   });
 
   /// イベントID
-  String id;
+  int id;
 
   /// イベントタイトル
   String title;

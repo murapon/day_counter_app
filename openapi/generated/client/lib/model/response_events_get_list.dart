@@ -19,7 +19,7 @@ class ResponseEventsGetList {
   });
 
   /// イベントID
-  String id;
+  int id;
 
   /// カウントタイプ（progress:経過、left:残り）
   ResponseEventsGetListCountTypeEnum countType;

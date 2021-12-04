@@ -15,95 +15,82 @@ class EventListPage extends StatefulWidget {
 }
 
 class _EventListPageState extends State<EventListPage> {
-  Future<ResponseEventsGet> eventList = null;
+  List<Map> eventList = null;
+  bool loading = false;
+  int offset = 0;
 
   @override
   Widget build(BuildContext context) {
-    print('EventListPage START');
-
-/*
-    print("getList  test-------------");
-    // 初期設定：アプリID取得
-    var spDevice = new SpAccount();
-    spDevice.getAccount();
-    AccountEntity accountEntity = new AccountEntity();
-    print("event_list_page123 uuid");
-    print(accountEntity.getUuid());
-    if (accountEntity.getUuid() == null) {
-      var userApiService = new UserApiService();
-      userApiService.getUser();
-    }
-    print("test-------------1");
-    var eventsApiService = new EventsApiService();
-    print("test-------------2");
-    // イベント一覧取得
-    eventList = eventsApiService.getEvents(10, 0);
-    print("test-------------3");
-*/
-
+    var length = eventList?.length ?? 0;
     return Scaffold(
-      appBar: AppBar(
-        title: Text("イベント"),
-        automaticallyImplyLeading: false,
-      ),
-      body: FutureBuilder(
-        future: _getList(),
-        builder: (BuildContext context, AsyncSnapshot<ResponseEventsGet> snapshot) {
-          print("EventListPage builder START");
-          if (!snapshot.hasData) {
-            print("EventListPage builder NO DATA");
-            return Text("データを取得中");
+      appBar: AppBar(title: Text("無限スクロール")),
+      body: new ListView.builder(
+        itemBuilder: (context, index) {
+          if (index == length && offset != null) {
+            _load();
+            return new Center(
+              child: new Container(
+                margin: const EdgeInsets.only(top: 8.0),
+                width: 32.0,
+                height: 32.0,
+                child: const CircularProgressIndicator(),
+              ),
+            );
+          } else if (index > length) {
+            return null;
           }
-          return ListView.builder(
-            shrinkWrap: true,
-            itemBuilder: (BuildContext context, int index) {
-              return Container(
-                  decoration: BoxDecoration(
-                    border: Border(
-                      bottom: BorderSide(color: Colors.black38),
-                    ),
-                  ),
-                  child: ListTile(
-                    leading: const Icon(Icons.flight_land),
-                    title: Text(snapshot.data.list[index].title),
-                    subtitle: Text('2021/10/09 00:00:00'),
-                    onTap: () {
-                      Navigator.pushNamed(context, '/event_detail');
-//                  Navigator.push(
-//                    context,
-//                    MaterialPageRoute(builder: (context) => EventDetailPage()),
-//                  );
-                    },
-                  ));
-            },
-            itemCount: snapshot.data.totalCount,
-          );
-        },
-      ),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
-        onPressed: () {
-          Navigator.pushNamed(context, '/event_register');
+          if (eventList.length > index) {
+            var event = eventList[index];
+            print(event['title']);
+            print(event['id']);
+            return Container(
+                child: ListTile(
+              leading: const Icon(Icons.flight_land),
+              title: Text(event['title']),
+              subtitle: Text(event['eventTime']),
+              onTap: () {
+                Navigator.pushNamed(context, '/event_detail', arguments: {'event_id': event['id']});
+              },
+            ));
+          } else {
+            return null;
+          }
         },
       ),
     );
   }
 
-  Future<ResponseEventsGet> _getList() async  {
-print("EventListPage getList START");
-    // 初期設定：アプリID取得
-    var spDevice = new SpAccount();
-    spDevice.getAccount();
-    AccountEntity accountEntity = new AccountEntity();
-    print(accountEntity.getUuid());
-    if (accountEntity.getUuid() == null) {
-      var userApiService = new UserApiService();
-      await userApiService.getUser();
+  Future<void> _load() async {
+    if (loading || offset == null) {
+      return null;
     }
-    var eventsApiService = new EventsApiService();
-    // イベント一覧取得
-    var a =  await eventsApiService.getEvents(10, 0);
-print("EventListPage getList RETURN");
-    return a;
+    loading = true;
+    try {
+      // 初期設定：アプリID取得
+      var spDevice = new SpAccount();
+      await spDevice.getAccount();
+      AccountEntity accountEntity = new AccountEntity();
+      if (accountEntity.getUuid() == null) {
+        var userApiService = new UserApiService();
+        await userApiService.getUser();
+      }
+      var eventsApiService = new EventsApiService();
+      // イベント一覧取得
+      var eventData = await eventsApiService.getEvents(10, offset);
+      setState(() {
+        offset = eventData.nextOffset;
+        if (eventList == null) {
+          eventList = <Map>[];
+        }
+        eventData.list.forEach((dynamic event) {
+          eventList
+              .add({'id': event.id as int, 'title': event.title as String, 'eventTime': event.eventTime as String});
+        });
+      });
+    } catch (e) {
+      print(e.toString());
+    } finally {
+      loading = false;
+    }
   }
 }

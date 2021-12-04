@@ -10,6 +10,12 @@ class SpAccount {
     String uuid = prefs.getString('uuid') ?? null;
     String password = prefs.getString('password') ?? null;
     String jwtKey = prefs.getString('jwtKey') ?? null;
+
+uuid = '2e56e40c-9673-457e-a0a7-0f6361c6ebbd';
+password = '80b780f7953a9717205a';
+//print("getAccount");
+//print(uuid);
+
     // エンティティーに入れる
     AccountEntity accountEntity = new AccountEntity();
     accountEntity.setAccount('uuid', uuid);

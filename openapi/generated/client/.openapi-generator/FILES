@@ -1,5 +1,4 @@
 .gitignore
-.openapi-generator-ignore
 .travis.yml
 README.md
 analysis_options.yaml
@@ -38,15 +37,3 @@ lib/model/response_events_get_list.dart
 lib/model/response_jwt_key_post.dart
 lib/model/response_user_post.dart
 pubspec.yaml
-test/events_api_test.dart
-test/request_events_post_test.dart
-test/request_events_put_test.dart
-test/request_jwt_key_post_test.dart
-test/response_error_messages_test.dart
-test/response_error_test.dart
-test/response_events_detail_get_test.dart
-test/response_events_get_list_test.dart
-test/response_events_get_test.dart
-test/response_jwt_key_post_test.dart
-test/response_user_post_test.dart
-test/user_api_test.dart

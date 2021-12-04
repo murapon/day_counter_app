@@ -8,7 +8,7 @@ class UserApiService {
    * 新規アカウント発行
    */
   void getUser() async {
-    print("UserApiService : getUser");
+//    print("UserApiService : getUser");
     var client = ApiClient(basePath: "http://10.0.2.2:31180");
 // ヘッダを追加したい場合はクライアントに設定可能
 //  client.addDefaultHeader("key", "value");

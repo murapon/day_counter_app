@@ -9,11 +9,11 @@ All URIs are relative to *http://localhost:31180*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**deleteEventsEventId**](EventsApi.md#deleteeventseventid) | **DELETE** /events/{event_id} | イベント削除
+[**deleteEventsEventId**](EventsApi.md#deleteeventseventid) | **DELETE** /event/{event_id} | イベント削除
 [**getEvents**](EventsApi.md#getevents) | **GET** /events | イベント一覧取得
-[**getEventsEventId**](EventsApi.md#geteventseventid) | **GET** /events/{event_id} | イベント詳細取得
+[**getEventsEventId**](EventsApi.md#geteventseventid) | **GET** /event/{event_id} | イベント詳細取得
 [**postEvents**](EventsApi.md#postevents) | **POST** /events | イベント登録
-[**putEventsEventId**](EventsApi.md#puteventseventid) | **PUT** /events/{event_id} | イベント変更
+[**putEventsEventId**](EventsApi.md#puteventseventid) | **PUT** /event/{event_id} | イベント変更
 
 
 # **deleteEventsEventId**
@@ -126,7 +126,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **getEventsEventId**
-> ResponseEventsDetailGet getEventsEventId(eventId, xAppType, xAppVersion, xOsVersion, xUuid, xJwtKey, eventId2)
+> ResponseEventsDetailGet getEventsEventId(eventId, xAppType, xAppVersion, xOsVersion, xUuid, xJwtKey)
 
 イベント詳細取得
 
@@ -143,10 +143,9 @@ final xAppVersion = xAppVersion_example; // String | アプリバージョン
 final xOsVersion = xOsVersion_example; // String | OSバージョン
 final xUuid = xUuid_example; // String | uuid
 final xJwtKey = xJwtKey_example; // String | jwt key
-final eventId2 = eventId_example; // String | イベントID
 
 try { 
-    final result = api_instance.getEventsEventId(eventId, xAppType, xAppVersion, xOsVersion, xUuid, xJwtKey, eventId2);
+    final result = api_instance.getEventsEventId(eventId, xAppType, xAppVersion, xOsVersion, xUuid, xJwtKey);
     print(result);
 } catch (e) {
     print('Exception when calling EventsApi->getEventsEventId: $e\n');
@@ -163,7 +162,6 @@ Name | Type | Description  | Notes
  **xOsVersion** | **String**| OSバージョン | 
  **xUuid** | **String**| uuid | 
  **xJwtKey** | **String**| jwt key | 
- **eventId2** | **String**| イベントID | 
 
 ### Return type
 

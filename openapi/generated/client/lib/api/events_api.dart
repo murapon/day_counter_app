@@ -66,7 +66,7 @@ class EventsApi {
      throw ApiException(HttpStatus.badRequest, 'Missing required param: eventId2');
     }
 
-    final path = r'/events/{event_id}'
+    final path = r'/event/{event_id}'
       .replaceAll('{' + 'event_id' + '}', eventId.toString());
 
     Object postBody;
@@ -280,10 +280,7 @@ class EventsApi {
   ///
   /// * [String] xJwtKey (required):
   ///   jwt key
-  ///
-  /// * [String] eventId2 (required):
-  ///   イベントID
-  Future<Response> getEventsEventIdWithHttpInfo(String eventId, String xAppType, String xAppVersion, String xOsVersion, String xUuid, String xJwtKey, String eventId2) async {
+  Future<Response> getEventsEventIdWithHttpInfo(String eventId, String xAppType, String xAppVersion, String xOsVersion, String xUuid, String xJwtKey) async {
     // Verify required params are set.
     if (eventId == null) {
      throw ApiException(HttpStatus.badRequest, 'Missing required param: eventId');
@@ -303,11 +300,8 @@ class EventsApi {
     if (xJwtKey == null) {
      throw ApiException(HttpStatus.badRequest, 'Missing required param: xJwtKey');
     }
-    if (eventId2 == null) {
-     throw ApiException(HttpStatus.badRequest, 'Missing required param: eventId2');
-    }
 
-    final path = r'/events/{event_id}'
+    final path = r'/event/{event_id}'
       .replaceAll('{' + 'event_id' + '}', eventId.toString());
 
     Object postBody;
@@ -315,8 +309,6 @@ class EventsApi {
     final queryParams = <QueryParam>[];
     final headerParams = <String, String>{};
     final formParams = <String, String>{};
-
-      queryParams.addAll(_convertParametersForCollectionFormat('', 'event_id', eventId2));
 
     headerParams[r'x-app-type'] = parameterToString(xAppType);
     headerParams[r'x-app-version'] = parameterToString(xAppVersion);
@@ -363,11 +355,8 @@ class EventsApi {
   ///
   /// * [String] xJwtKey (required):
   ///   jwt key
-  ///
-  /// * [String] eventId2 (required):
-  ///   イベントID
-  Future<ResponseEventsDetailGet> getEventsEventId(String eventId, String xAppType, String xAppVersion, String xOsVersion, String xUuid, String xJwtKey, String eventId2) async {
-    final response = await getEventsEventIdWithHttpInfo(eventId, xAppType, xAppVersion, xOsVersion, xUuid, xJwtKey, eventId2);
+  Future<ResponseEventsDetailGet> getEventsEventId(String eventId, String xAppType, String xAppVersion, String xOsVersion, String xUuid, String xJwtKey) async {
+    final response = await getEventsEventIdWithHttpInfo(eventId, xAppType, xAppVersion, xOsVersion, xUuid, xJwtKey);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -537,7 +526,7 @@ class EventsApi {
      throw ApiException(HttpStatus.badRequest, 'Missing required param: eventId2');
     }
 
-    final path = r'/events/{event_id}'
+    final path = r'/event/{event_id}'
       .replaceAll('{' + 'event_id' + '}', eventId.toString());
 
     Object postBody = requestEventsPut;

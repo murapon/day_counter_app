@@ -63,11 +63,11 @@ All URIs are relative to *http://localhost:31180*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*EventsApi* | [**deleteEventsEventId**](doc//EventsApi.md#deleteeventseventid) | **DELETE** /events/{event_id} | イベント削除
+*EventsApi* | [**deleteEventsEventId**](doc//EventsApi.md#deleteeventseventid) | **DELETE** /event/{event_id} | イベント削除
 *EventsApi* | [**getEvents**](doc//EventsApi.md#getevents) | **GET** /events | イベント一覧取得
-*EventsApi* | [**getEventsEventId**](doc//EventsApi.md#geteventseventid) | **GET** /events/{event_id} | イベント詳細取得
+*EventsApi* | [**getEventsEventId**](doc//EventsApi.md#geteventseventid) | **GET** /event/{event_id} | イベント詳細取得
 *EventsApi* | [**postEvents**](doc//EventsApi.md#postevents) | **POST** /events | イベント登録
-*EventsApi* | [**putEventsEventId**](doc//EventsApi.md#puteventseventid) | **PUT** /events/{event_id} | イベント変更
+*EventsApi* | [**putEventsEventId**](doc//EventsApi.md#puteventseventid) | **PUT** /event/{event_id} | イベント変更
 *UserApi* | [**postUser**](doc//UserApi.md#postuser) | **POST** /user | ユーザー登録
 *UserApi* | [**postUserJwtKey**](doc//UserApi.md#postuserjwtkey) | **POST** /user/jwt_key | JWTキー生成
 

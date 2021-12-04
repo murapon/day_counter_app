@@ -168,7 +168,7 @@ paths:
                 $ref: '#/components/schemas/response_error'
       tags:
         - events
-  '/events/{event_id}':
+  '/event/{event_id}':
     parameters:
       - schema:
           type: string
@@ -215,12 +215,6 @@ paths:
           name: x-jwt-key
           required: true
           description: jwt key
-        - schema:
-            type: string
-          in: query
-          name: event_id
-          description: イベントID
-          required: true
       responses:
         '200':
           description: OK
@@ -635,8 +629,8 @@ components:
       type: object
       properties:
         id:
-          type: string
           description: イベントID
+          type: integer
         title:
           type: string
           description: イベントタイトル
@@ -668,7 +662,7 @@ components:
             type: object
             properties:
               id:
-                type: string
+                type: integer
                 description: イベントID
               count_type:
                 type: string

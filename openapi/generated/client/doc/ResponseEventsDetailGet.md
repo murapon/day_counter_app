@@ -8,7 +8,7 @@ import 'package:openapi/api.dart';
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **String** | イベントID | 
+**id** | **int** | イベントID | 
 **title** | **String** | イベントタイトル | 
 **eventTime** | **String** | イベント時間 | 
 **countType** | **String** | カウントタイプ（progress:経過、left:残り） | 
