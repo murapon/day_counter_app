@@ -1,5 +1,8 @@
+import 'dart:io';
+import 'package:path_provider/path_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:time_counter_app/services/api/UserApiService.dart';
+import 'package:time_counter_app/views/pages/event_update_page.dart';
 import 'package:time_counter_app/views/pages/sample_page.dart';
 import 'entity/AccountEntity.dart';
 import 'services/DeviceInfoService.dart';
@@ -79,5 +82,10 @@ class _MyHomePageState extends State<MyApp> {
     // OS情報取得
     var deviceInfoService = new DeviceInfoService();
     await deviceInfoService.setDeviceInfo();
+    // 画像を入れるディレクトリ作成
+    Directory appDocDir = await getApplicationDocumentsDirectory();
+    String appDocPath = appDocDir.path;
+    Directory appDirectory = Directory(appDocPath + '/img/');
+    await appDirectory.create(recursive: true);
   }
 }

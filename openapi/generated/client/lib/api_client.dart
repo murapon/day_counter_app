@@ -190,18 +190,18 @@ class ApiClient {
           break;
         case 'double':
           return value is double ? value : double.parse('$value');
+        case 'RequestEventPut':
+          return RequestEventPut.fromJson(value);
         case 'RequestEventsPost':
           return RequestEventsPost.fromJson(value);
-        case 'RequestEventsPut':
-          return RequestEventsPut.fromJson(value);
         case 'RequestJwtKeyPost':
           return RequestJwtKeyPost.fromJson(value);
         case 'ResponseError':
           return ResponseError.fromJson(value);
         case 'ResponseErrorMessages':
           return ResponseErrorMessages.fromJson(value);
-        case 'ResponseEventsDetailGet':
-          return ResponseEventsDetailGet.fromJson(value);
+        case 'ResponseEventDetailGet':
+          return ResponseEventDetailGet.fromJson(value);
         case 'ResponseEventsGet':
           return ResponseEventsGet.fromJson(value);
         case 'ResponseEventsGetList':

@@ -176,7 +176,7 @@ paths:
         in: path
         required: true
     get:
-      operationId: get-events-event_id
+      operationId: get-event-event_id
       tags:
         - events
       summary: イベント詳細取得
@@ -221,7 +221,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/response_events_detail_get'
+                $ref: '#/components/schemas/response_event_detail_get'
         '400':
           description: Bad Request
           content:
@@ -247,7 +247,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/response_error'
     put:
-      operationId: put-events-event_id
+      operationId: put-event-event_id
       summary: イベント変更
       description: イベント変更
       parameters:
@@ -284,17 +284,11 @@ paths:
           name: x-jwt-key
           required: true
           description: jwt key
-        - schema:
-            type: string
-          in: query
-          name: event_id
-          description: イベントID
-          required: true
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/request_events_put'
+              $ref: '#/components/schemas/request_event_put'
         description: ''
       responses:
         '200':
@@ -326,7 +320,7 @@ paths:
       tags:
         - events
     delete:
-      operationId: delete-events-event_id
+      operationId: delete-event-event_id
       summary: イベント削除
       description: イベント削除
       parameters:
@@ -533,9 +527,12 @@ components:
         title:
           type: string
           description: イベントタイトル
+        event_date:
+          type: string
+          description: イベン日付
         event_time:
           type: string
-          description: 時間
+          description: イベント時間
         count_type:
           type: string
           description: 'カウントタイプ（progress:経過、left:残り）'
@@ -551,24 +548,25 @@ components:
         image:
           type: string
           description: base64エンコードした画像データ
-        event_date:
-          type: string
-          description: 日
       required:
         - title
+        - event_date
         - count_type
         - display_type
-        - event_date
-    request_events_put:
-      title: request_events_put
+    request_event_put:
+      title: request_event_put
       description: イベント変更APIのリクエストモデル
       type: object
       properties:
         title:
           type: string
           description: イベントタイトル
+        event_date:
+          type: string
+          description: イベン日付
         event_time:
           type: string
+          description: イベント時間
         count_type:
           type: string
           description: 'カウントタイプ（progress:経過、left:残り）'
@@ -584,11 +582,9 @@ components:
         image:
           type: string
           description: base64エンコードした画像データ
-      required:
-        - title
-        - event_time
-        - count_type
-        - display_type
+        is_delete_image:
+          type: boolean
+          description: 画像の削除有無
     request_jwt_key_post:
       title: request_jwt_key_post
       description: JWTキー生成APIのリクエストモデル
@@ -623,8 +619,8 @@ components:
         new_release_url:
           type: string
           description: 強制バージョンアップ時のURL
-    response_events_detail_get:
-      title: response_events_detail_get
+    response_event_detail_get:
+      title: response_event_detail_get
       description: イベント詳細取得APIのレスポンスモデル
       type: object
       properties:
@@ -634,6 +630,9 @@ components:
         title:
           type: string
           description: イベントタイトル
+        event_date:
+          type: string
+          description: イベント日付
         event_time:
           type: string
           description: イベント時間
@@ -643,14 +642,24 @@ components:
           enum:
             - progress
             - left
+        display_type:
+          type: string
+          description: '表示タイプ（day:日付、time:日時）'
+          enum:
+            - day
+            - time
+        directory_name:
+          type: string
+          description: ディレクトリ名
         image_name:
           type: string
           description: 画像ファイル名
       required:
         - id
         - title
-        - event_time
+        - event_date
         - count_type
+        - display_type
     response_events_get:
       title: reponse_events_get
       description: イベント一覧取得APIのレスポンスモデル

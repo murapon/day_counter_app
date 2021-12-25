@@ -49,7 +49,8 @@ class _EventListPageState extends State<EventListPage> {
               title: Text(event['title']),
               subtitle: Text(event['eventTime']),
               onTap: () {
-                Navigator.pushNamed(context, '/event_detail', arguments: {'event_id': event['id']});
+                Navigator.pushNamed(context, '/event_detail',
+                    arguments: {'event_id': event['id'], 'title': event['title']});
               },
             ));
           } else {

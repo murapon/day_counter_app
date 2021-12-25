@@ -29,12 +29,12 @@ part 'auth/http_bearer_auth.dart';
 part 'api/events_api.dart';
 part 'api/user_api.dart';
 
+part 'model/request_event_put.dart';
 part 'model/request_events_post.dart';
-part 'model/request_events_put.dart';
 part 'model/request_jwt_key_post.dart';
 part 'model/response_error.dart';
 part 'model/response_error_messages.dart';
-part 'model/response_events_detail_get.dart';
+part 'model/response_event_detail_get.dart';
 part 'model/response_events_get.dart';
 part 'model/response_events_get_list.dart';
 part 'model/response_jwt_key_post.dart';

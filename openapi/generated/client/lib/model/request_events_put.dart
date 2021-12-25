@@ -12,16 +12,21 @@ part of openapi.api;
 class RequestEventsPut {
   /// Returns a new [RequestEventsPut] instance.
   RequestEventsPut({
-    @required this.title,
-    @required this.eventTime,
-    @required this.countType,
-    @required this.displayType,
+    this.title,
+    this.eventDate,
+    this.eventTime,
+    this.countType,
+    this.displayType,
     this.image,
   });
 
   /// イベントタイトル
   String title;
 
+  /// イベン日付
+  String eventDate;
+
+  /// イベント時間
   String eventTime;
 
   /// カウントタイプ（progress:経過、left:残り）
@@ -36,6 +41,7 @@ class RequestEventsPut {
   @override
   bool operator ==(Object other) => identical(this, other) || other is RequestEventsPut &&
      other.title == title &&
+     other.eventDate == eventDate &&
      other.eventTime == eventTime &&
      other.countType == countType &&
      other.displayType == displayType &&
@@ -44,20 +50,32 @@ class RequestEventsPut {
   @override
   int get hashCode =>
     (title == null ? 0 : title.hashCode) +
+    (eventDate == null ? 0 : eventDate.hashCode) +
     (eventTime == null ? 0 : eventTime.hashCode) +
     (countType == null ? 0 : countType.hashCode) +
     (displayType == null ? 0 : displayType.hashCode) +
     (image == null ? 0 : image.hashCode);
 
   @override
-  String toString() => 'RequestEventsPut[title=$title, eventTime=$eventTime, countType=$countType, displayType=$displayType, image=$image]';
+  String toString() => 'RequestEventsPut[title=$title, eventDate=$eventDate, eventTime=$eventTime, countType=$countType, displayType=$displayType, image=$image]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
+    if (title != null) {
       json[r'title'] = title;
+    }
+    if (eventDate != null) {
+      json[r'event_date'] = eventDate;
+    }
+    if (eventTime != null) {
       json[r'event_time'] = eventTime;
+    }
+    if (countType != null) {
       json[r'count_type'] = countType;
+    }
+    if (displayType != null) {
       json[r'display_type'] = displayType;
+    }
     if (image != null) {
       json[r'image'] = image;
     }
@@ -70,6 +88,7 @@ class RequestEventsPut {
     ? null
     : RequestEventsPut(
         title: json[r'title'],
+        eventDate: json[r'event_date'],
         eventTime: json[r'event_time'],
         countType: RequestEventsPutCountTypeEnum.fromJson(json[r'count_type']),
         displayType: RequestEventsPutDisplayTypeEnum.fromJson(json[r'display_type']),

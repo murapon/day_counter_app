@@ -30,12 +30,14 @@ dependencies:
   cupertino_icons: ^1.0.3
   intl: ^0.17.0
   image_picker: ^0.8.4+1
+  path_provider: ^2.0.8
 
   openapi:
     path: ./openapi/generated/client
   dio: ^4.0.0
   shared_preferences: ^2.0.8
   device_info_plus: ^2.1.0
+  image: ^3.1.0
 
 dev_dependencies:
   flutter_test:

@@ -50,9 +50,9 @@ final xJwtKey = xJwtKey_example; // String | jwt key
 final eventId2 = eventId_example; // String | イベントID
 
 try {
-    api_instance.deleteEventsEventId(eventId, xAppType, xAppVersion, xOsVersion, xUuid, xJwtKey, eventId2);
+    api_instance.deleteEventEventId(eventId, xAppType, xAppVersion, xOsVersion, xUuid, xJwtKey, eventId2);
 } catch (e) {
-    print('Exception when calling EventsApi->deleteEventsEventId: $e\n');
+    print('Exception when calling EventsApi->deleteEventEventId: $e\n');
 }
 
 ```
@@ -63,23 +63,23 @@ All URIs are relative to *http://localhost:31180*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*EventsApi* | [**deleteEventsEventId**](doc//EventsApi.md#deleteeventseventid) | **DELETE** /event/{event_id} | イベント削除
+*EventsApi* | [**deleteEventEventId**](doc//EventsApi.md#deleteeventeventid) | **DELETE** /event/{event_id} | イベント削除
+*EventsApi* | [**getEventEventId**](doc//EventsApi.md#geteventeventid) | **GET** /event/{event_id} | イベント詳細取得
 *EventsApi* | [**getEvents**](doc//EventsApi.md#getevents) | **GET** /events | イベント一覧取得
-*EventsApi* | [**getEventsEventId**](doc//EventsApi.md#geteventseventid) | **GET** /event/{event_id} | イベント詳細取得
 *EventsApi* | [**postEvents**](doc//EventsApi.md#postevents) | **POST** /events | イベント登録
-*EventsApi* | [**putEventsEventId**](doc//EventsApi.md#puteventseventid) | **PUT** /event/{event_id} | イベント変更
+*EventsApi* | [**putEventEventId**](doc//EventsApi.md#puteventeventid) | **PUT** /event/{event_id} | イベント変更
 *UserApi* | [**postUser**](doc//UserApi.md#postuser) | **POST** /user | ユーザー登録
 *UserApi* | [**postUserJwtKey**](doc//UserApi.md#postuserjwtkey) | **POST** /user/jwt_key | JWTキー生成
 
 
 ## Documentation For Models
 
+ - [RequestEventPut](doc//RequestEventPut.md)
  - [RequestEventsPost](doc//RequestEventsPost.md)
- - [RequestEventsPut](doc//RequestEventsPut.md)
  - [RequestJwtKeyPost](doc//RequestJwtKeyPost.md)
  - [ResponseError](doc//ResponseError.md)
  - [ResponseErrorMessages](doc//ResponseErrorMessages.md)
- - [ResponseEventsDetailGet](doc//ResponseEventsDetailGet.md)
+ - [ResponseEventDetailGet](doc//ResponseEventDetailGet.md)
  - [ResponseEventsGet](doc//ResponseEventsGet.md)
  - [ResponseEventsGetList](doc//ResponseEventsGetList.md)
  - [ResponseJwtKeyPost](doc//ResponseJwtKeyPost.md)

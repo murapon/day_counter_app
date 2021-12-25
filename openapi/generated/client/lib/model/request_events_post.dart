@@ -13,17 +13,20 @@ class RequestEventsPost {
   /// Returns a new [RequestEventsPost] instance.
   RequestEventsPost({
     @required this.title,
+    @required this.eventDate,
     this.eventTime,
     @required this.countType,
     @required this.displayType,
     this.image,
-    @required this.eventDate,
   });
 
   /// イベントタイトル
   String title;
 
-  /// 時間
+  /// イベン日付
+  String eventDate;
+
+  /// イベント時間
   String eventTime;
 
   /// カウントタイプ（progress:経過、left:残り）
@@ -35,33 +38,31 @@ class RequestEventsPost {
   /// base64エンコードした画像データ
   String image;
 
-  /// 日
-  String eventDate;
-
   @override
   bool operator ==(Object other) => identical(this, other) || other is RequestEventsPost &&
      other.title == title &&
+     other.eventDate == eventDate &&
      other.eventTime == eventTime &&
      other.countType == countType &&
      other.displayType == displayType &&
-     other.image == image &&
-     other.eventDate == eventDate;
+     other.image == image;
 
   @override
   int get hashCode =>
     (title == null ? 0 : title.hashCode) +
+    (eventDate == null ? 0 : eventDate.hashCode) +
     (eventTime == null ? 0 : eventTime.hashCode) +
     (countType == null ? 0 : countType.hashCode) +
     (displayType == null ? 0 : displayType.hashCode) +
-    (image == null ? 0 : image.hashCode) +
-    (eventDate == null ? 0 : eventDate.hashCode);
+    (image == null ? 0 : image.hashCode);
 
   @override
-  String toString() => 'RequestEventsPost[title=$title, eventTime=$eventTime, countType=$countType, displayType=$displayType, image=$image, eventDate=$eventDate]';
+  String toString() => 'RequestEventsPost[title=$title, eventDate=$eventDate, eventTime=$eventTime, countType=$countType, displayType=$displayType, image=$image]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
       json[r'title'] = title;
+      json[r'event_date'] = eventDate;
     if (eventTime != null) {
       json[r'event_time'] = eventTime;
     }
@@ -70,7 +71,6 @@ class RequestEventsPost {
     if (image != null) {
       json[r'image'] = image;
     }
-      json[r'event_date'] = eventDate;
     return json;
   }
 
@@ -80,11 +80,11 @@ class RequestEventsPost {
     ? null
     : RequestEventsPost(
         title: json[r'title'],
+        eventDate: json[r'event_date'],
         eventTime: json[r'event_time'],
         countType: RequestEventsPostCountTypeEnum.fromJson(json[r'count_type']),
         displayType: RequestEventsPostDisplayTypeEnum.fromJson(json[r'display_type']),
         image: json[r'image'],
-        eventDate: json[r'event_date'],
     );
 
   static List<RequestEventsPost> listFromJson(List<dynamic> json, {bool emptyIsNull, bool growable,}) =>
